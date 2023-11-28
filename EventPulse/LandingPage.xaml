@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPulse.LandingPage"
+             xmlns:local="clr-namespace:EventPulse"
+             xmlns:lang="clr-namespace:EventPulse.Resources.Languages">
+
+    <Grid BackgroundColor="{StaticResource Tertiary}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <CarouselView x:Name="carouselView" Grid.Row="0">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding .}" Aspect="Fill"/>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <StackLayout Grid.Row="1" VerticalOptions="End">
+            <Label
+                Text="{x:Static lang:AppResources.Welcome}"
+                SemanticProperties.HeadingLevel="Level1"
+                Margin="20,0,0,10"
+                FontSize="32"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                CharacterSpacing="2"
+                Text="Get Started"
+                TextColor="{StaticResource Primary}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                FontSize="22"
+                FontAttributes="Bold"
+                BackgroundColor="{StaticResource Secondary}"
+                Margin="0,10,0,0" 
+                Clicked="OnGetStartedClicked"
+                />
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>
