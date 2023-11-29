@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPulse.HomePage"
+             xmlns:local="clr-namespace:EventPulse"
+             xmlns:lang="clr-namespace:EventPulse.Resources.Languages"
+             xmlns:helper="clr-namespace:EventPulse.Helpers"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Gray900}">
+
+    <Grid RowDefinitions=".1*,.25*,.05*,.60*">
+
+        <!-- Nav -->
+        <Grid Margin="20" ColumnDefinitions="*,*,*">
+            <ImageButton HorizontalOptions="Start" VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FAS" 
+                                     Glyph="&#8801;" 
+                                     Color="{StaticResource Gray200}"
+                                     Size="20"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <Label Grid.Column="1"
+                   FontFamily="RobotoRegular"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   Text="{x:Static lang:AppResources.App_name}"
+                   TextColor="{StaticResource Gray200}"
+                   VerticalOptions="Center"/>
+            <ImageButton Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FAS" 
+                                     Glyph="&#x2b;" 
+                                     Color="{StaticResource Gray200}" 
+                                     Size="20"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+
+        <!-- Najbliższe wydarzenie -->
+        <Grid Grid.Row="1" >
+            <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
+                <RoundRectangle Grid.RowSpan="4"
+                                Grid.ColumnSpan="2"
+                                VerticalOptions="Start"
+                                CornerRadius="20"
+                                Margin="10,0"
+                                Fill="{StaticResource Gray700}"
+                                />
+                <Label
+                    Grid.Row="0"
+                    Margin="30,15,0,0"
+                    Text="Title of event"
+                    FontSize="22"
+                    FontFamily="SmoochSemiBold"
+                    TextColor="{StaticResource Gray100}"/>
+
+                <BoxView 
+                    Grid.Row="1"
+                    Color="{StaticResource Yellow200Accent}" 
+                    HeightRequest="1" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="20,8,20,0"
+                    Grid.ColumnSpan="2"/>
+
+                <Label
+                    Grid.Row="2"
+                    Margin="30,0,0,0"
+                    Text="To jest długi tekst, który może mieć wiele linii. Przykładowy tekst, który może się rozciągać na kilka wierszy."
+                    FontSize="18"
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    FontFamily="SmoochRegular"
+                    TextColor="{StaticResource Gray200}"/>
+
+                <Grid Grid.Row="3">
+                    <BoxView 
+                        Color="{StaticResource Yellow100Accent}"
+                        CornerRadius="0,20,20,0"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        Margin="11,1">
+                    </BoxView>
+                    <Label
+                        Grid.Row="0"
+                        Margin="40,4,0,0"
+                        Text="1d 23h 39min 44sec"
+                        FontSize="20"
+                        VerticalOptions="Center"
+                        FontFamily="RowdiesRegular"
+                        TextColor="{StaticResource Gray900}"/>
+                </Grid>
+
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="0,0,10,0"
+                    CornerRadius="30"
+                    Text="&#9998; edit..."
+                    FontSize="16"
+                    FontFamily="RobotoRegular"
+                    VerticalOptions="End"
+                    BackgroundColor="Transparent"
+                    TextColor="{StaticResource Gray100}"
+                    />
+
+                <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
+                    <Label
+                        Grid.Row="1"
+                        Margin="0"
+                        Text="22.12.2023r."
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalTextAlignment="Start"
+                        FontFamily="SmoochRegular"
+                        TextColor="{StaticResource Yellow300Accent}"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+        <!-- Linia oddzielajaca wydarzenia -->
+        <BoxView
+            Grid.Row="2"
+            Color="{StaticResource Gray500}" 
+            HeightRequest="5"
+            CornerRadius="30"
+            VerticalOptions="Start"
+            HorizontalOptions="FillAndExpand"
+            Margin="20,10,20,0"
+            Grid.ColumnSpan="2"/>
+
+        <!-- Lista pozostałych wydarzeń -->
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding YourListProperty}"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Szczegóły kafelka -->
+                    <Grid>
+                        <!-- Dodaj tu elementy dla każdego "kafelka" zgodnie z Twoimi potrzebami -->
+                        <BoxView Color="LightGray" HeightRequest="100" />
+                        <Label Text="{Binding SomeProperty}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                        <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
+                            <RoundRectangle Grid.RowSpan="4"
+                                Grid.ColumnSpan="2"
+                                VerticalOptions="Start"
+                                CornerRadius="20"
+                                Margin="10,0"
+                                Fill="{StaticResource Gray700}"
+                                />
+                            <Label
+                                Grid.Row="0"
+                                Margin="30,15,0,0"
+                                Text="Title of event"
+                                FontSize="22"
+                                FontFamily="SmoochSemiBold"
+                                TextColor="{StaticResource Gray100}"/>
+
+                            <BoxView 
+                                Grid.Row="1"
+                                Color="{StaticResource Yellow200Accent}" 
+                                HeightRequest="1" 
+                                VerticalOptions="Start"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="20,8,20,0"
+                                Grid.ColumnSpan="2"/>
+
+                            <Label
+                                 Grid.Row="2"
+                                 Margin="30,0,0,0"
+                                 Text="To jest długi tekst, który może mieć wiele linii. Przykładowy tekst, który może się rozciągać na kilka wierszy."
+                                 FontSize="18"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="FillAndExpand"
+                                 FontFamily="SmoochRegular"
+                                 TextColor="{StaticResource Gray200}"/>
+
+                            <Grid Grid.Row="3">
+                                <BoxView 
+                                    Color="{StaticResource Yellow100Accent}"
+                                    CornerRadius="0,20,20,0"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Margin="11,1">
+                                </BoxView>
+                                <Label
+                                    Grid.Row="0"
+                                    Margin="40,4,0,0"
+                                    Text="1d 23h 39min 44sec"
+                                    FontSize="20"
+                                    VerticalOptions="Center"
+                                    FontFamily="RowdiesRegular"
+                                    TextColor="{StaticResource Gray900}"/>
+                            </Grid>
+
+                            <Button
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="0,0,10,0"
+                                CornerRadius="30"
+                                Text="&#9998; edit..."
+                                FontSize="16"
+                                FontFamily="RobotoRegular"
+                                VerticalOptions="End"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource Gray100}"/>
+
+                            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
+                                <Label
+                                     Grid.Row="1"
+                                     Margin="0"
+                                     Text="22.12.2023r."
+                                     FontSize="20"
+                                     HorizontalOptions="Center"
+                                     VerticalTextAlignment="Start"
+                                     FontFamily="SmoochRegular"
+                                     TextColor="{StaticResource Yellow300Accent}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+    </Grid>
+</ContentPage>

@@ -4,7 +4,7 @@ namespace EventPulse;
 
 public partial class LandingPage : ContentPage
 {
-	private ObservableCollection<string> imageUrls = new ObservableCollection<string>
+	private ObservableCollection<string> imageUrls = new()
 		{
 			"cowboy.jpg",
 			"guitar_solo.jpg",
@@ -21,7 +21,6 @@ public partial class LandingPage : ContentPage
 		carouselView.ItemsSource = ImageUrls;
 		carouselView.PositionChanged += CarouselView_PositionChanged;
 
-		// Uruchom Timer do zmiany obrazów co 3 sekundy
 		Device.StartTimer(TimeSpan.FromSeconds(3), () =>
 		{
 			currentIndex = (currentIndex + 1) % ImageUrls.Count;

@@ -61,6 +61,15 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App_name.
+        /// </summary>
+        internal static string App_name {
+            get {
+                return ResourceManager.GetString("App_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get_started.
         /// </summary>
         internal static string Get_started {
