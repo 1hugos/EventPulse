@@ -20,7 +20,7 @@ public static class MauiProgram
 				fonts.AddFont("Rowdies-Bold.ttf", "RowdiesBold");
 				fonts.AddFont("SmoochSans-Regular.ttf", "SmoochRegular");
 				fonts.AddFont("SmoochSans-SemiBold.ttf", "SmoochSemiBold");
-				fonts.AddFont("Free_Solid.otf", "FreeSolid");
+				fonts.AddFont("Free_Solid.otf", "FontAwesome");
 				fonts.AddFont("Free_Regular.otf", "FreeRegular");
 				fonts.AddFont("Brands_Regular.otf", "BrandsRegular");
 			});

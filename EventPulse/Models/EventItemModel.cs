@@ -19,4 +19,9 @@ public class EventItemModel
 	/// Data wydarzenia.
 	/// </summary>
 	public DateTime Data { get; set; }
+
+	/// <summary>
+	/// Model dla listy wydarzeń.
+	/// </summary>
+	public List<EventItemModel> EventItemList { get; set; }
 }

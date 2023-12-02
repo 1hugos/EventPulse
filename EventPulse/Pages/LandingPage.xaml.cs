@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace EventPulse;
+namespace EventPulse.Pages;
 
 public partial class LandingPage : ContentPage
 {

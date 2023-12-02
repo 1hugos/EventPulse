@@ -58,6 +58,9 @@
 	  <Compile Update="Pages\LandingPage.xaml.cs">
 	    <DependentUpon>LandingPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\AddNewItemPage.xaml.cs">
+	    <DependentUpon>AddNewItemPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Languages\AppResources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -74,6 +77,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddNewItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

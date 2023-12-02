@@ -61,6 +61,15 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add_new_item.
+        /// </summary>
+        internal static string Add_new_item {
+            get {
+                return ResourceManager.GetString("Add_new_item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App_name.
         /// </summary>
         internal static string App_name {
@@ -75,6 +84,33 @@ namespace EventPulse.Resources.Languages {
         internal static string Get_started {
             get {
                 return ResourceManager.GetString("Get_started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New_item_date.
+        /// </summary>
+        internal static string New_item_date {
+            get {
+                return ResourceManager.GetString("New_item_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New_item_description.
+        /// </summary>
+        internal static string New_item_description {
+            get {
+                return ResourceManager.GetString("New_item_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New_item_title.
+        /// </summary>
+        internal static string New_item_title {
+            get {
+                return ResourceManager.GetString("New_item_title", resourceCulture);
             }
         }
         
