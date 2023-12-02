@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPulse.HomePage"
+             x:Class="EventPulse.Pages.HomePage"
              xmlns:local="clr-namespace:EventPulse"
              xmlns:lang="clr-namespace:EventPulse.Resources.Languages"
-             xmlns:helper="clr-namespace:EventPulse.Helpers"
+             xmlns:models="clr-namespace:EventPulse.Models"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource Gray900}">
 
@@ -12,14 +12,16 @@
 
         <!-- Nav -->
         <Grid Margin="20" ColumnDefinitions="*,*,*">
-            <ImageButton HorizontalOptions="Start" VerticalOptions="Center">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="FAS" 
-                                     Glyph="&#8801;" 
-                                     Color="{StaticResource Gray200}"
-                                     Size="20"/>
-                </ImageButton.Source>
-            </ImageButton>
+            <Button
+                Grid.Column="0"
+                FontFamily="FontAwesome"
+                Text="{x:Static models:Icons.Bars}"
+                TextColor="{StaticResource Gray200}"
+                FontSize="20"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Start"
+                />
+            
             <Label Grid.Column="1"
                    FontFamily="RobotoRegular"
                    FontSize="18"
@@ -27,26 +29,33 @@
                    Text="{x:Static lang:AppResources.App_name}"
                    TextColor="{StaticResource Gray200}"
                    VerticalOptions="Center"/>
-            <ImageButton Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="FAS" 
-                                     Glyph="&#x2b;" 
-                                     Color="{StaticResource Gray200}" 
-                                     Size="20"/>
-                </ImageButton.Source>
-            </ImageButton>
+
+            <Button
+                Grid.Column="2"
+                FontFamily="FontAwesome"
+                Text="{x:Static models:Icons.Plus}"
+                TextColor="{StaticResource Gray200}"
+                FontSize="20"
+                BackgroundColor="Transparent"
+                HorizontalOptions="End"
+                Clicked="OnAddNewItemClicked"
+                />
         </Grid>
 
         <!-- Najbliższe wydarzenie -->
         <Grid Grid.Row="1" >
             <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
-                <RoundRectangle Grid.RowSpan="4"
-                                Grid.ColumnSpan="2"
-                                VerticalOptions="Start"
-                                CornerRadius="20"
-                                Margin="10,0"
-                                Fill="{StaticResource Gray700}"
-                                />
+
+                <!-- Tło -->
+                <RoundRectangle 
+                    Grid.RowSpan="4"       
+                    Grid.ColumnSpan="2"             
+                    VerticalOptions="Start"            
+                    CornerRadius="20"           
+                    Margin="10,0"             
+                    Fill="{StaticResource Gray700}"/>
+
+                <!-- Tytuł wydarzenia -->
                 <Label
                     Grid.Row="0"
                     Margin="30,15,0,0"
@@ -55,6 +64,20 @@
                     FontFamily="SmoochSemiBold"
                     TextColor="{StaticResource Gray100}"/>
 
+                <!-- Data wydarzenia -->
+                <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
+                    <Label
+                        Grid.Row="1"
+                        Margin="0"
+                        Text="22.12.2023r."
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalTextAlignment="Start"
+                        FontFamily="SmoochRegular"
+                        TextColor="{StaticResource Yellow300Accent}"/>
+                </Grid>
+
+                <!-- Kreska oddzielająca -->
                 <BoxView 
                     Grid.Row="1"
                     Color="{StaticResource Yellow200Accent}" 
@@ -64,6 +87,7 @@
                     Margin="20,8,20,0"
                     Grid.ColumnSpan="2"/>
 
+                <!-- Opis wydarzenia -->
                 <Label
                     Grid.Row="2"
                     Margin="30,0,0,0"
@@ -74,6 +98,7 @@
                     FontFamily="SmoochRegular"
                     TextColor="{StaticResource Gray200}"/>
 
+                <!-- Timer -->
                 <Grid Grid.Row="3">
                     <BoxView 
                         Color="{StaticResource Yellow100Accent}"
@@ -92,32 +117,32 @@
                         TextColor="{StaticResource Gray900}"/>
                 </Grid>
 
+                <!-- Edycja -->
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="23,2,0,0"
+                    FontFamily="FontAwesome"
+                    Text="{x:Static models:Icons.Edit}"
+                    TextColor="{StaticResource Gray200}"
+                    FontSize="12"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"/>
+
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
-                    Margin="0,0,10,0"
+                    Margin="10,0,10,0"
                     CornerRadius="30"
-                    Text="&#9998; edit..."
+                    Text="edit..."
                     FontSize="16"
                     FontFamily="RobotoRegular"
                     VerticalOptions="End"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource Gray100}"
                     />
-
-                <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
-                    <Label
-                        Grid.Row="1"
-                        Margin="0"
-                        Text="22.12.2023r."
-                        FontSize="20"
-                        HorizontalOptions="Center"
-                        VerticalTextAlignment="Start"
-                        FontFamily="SmoochRegular"
-                        TextColor="{StaticResource Yellow300Accent}"/>
-                </Grid>
             </Grid>
-
         </Grid>
 
         <!-- Linia oddzielajaca wydarzenia -->
@@ -133,7 +158,7 @@
 
         <!-- Lista pozostałych wydarzeń -->
         <CollectionView Grid.Row="3"
-                        ItemsSource="{Binding YourListProperty}"
+                        ItemsSource="{Binding EventItemList}"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
@@ -142,23 +167,19 @@
                 <DataTemplate>
                     <!-- Szczegóły kafelka -->
                     <Grid>
-                        <!-- Dodaj tu elementy dla każdego "kafelka" zgodnie z Twoimi potrzebami -->
-                        <BoxView Color="LightGray" HeightRequest="100" />
-                        <Label Text="{Binding SomeProperty}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" />
-
                         <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
                             <RoundRectangle Grid.RowSpan="4"
                                 Grid.ColumnSpan="2"
                                 VerticalOptions="Start"
                                 CornerRadius="20"
                                 Margin="10,0"
-                                Fill="{StaticResource Gray700}"
+                                Fill="{StaticResource Gray600}"
                                 />
                             <Label
                                 Grid.Row="0"
                                 Margin="30,15,0,0"
-                                Text="Title of event"
-                                FontSize="22"
+                                Text="{Binding Title}"
+                                FontSize="10"
                                 FontFamily="SmoochSemiBold"
                                 TextColor="{StaticResource Gray100}"/>
 
@@ -174,8 +195,8 @@
                             <Label
                                  Grid.Row="2"
                                  Margin="30,0,0,0"
-                                 Text="To jest długi tekst, który może mieć wiele linii. Przykładowy tekst, który może się rozciągać na kilka wierszy."
-                                 FontSize="18"
+                                 Text="{Binding Description}"
+                                 FontSize="10"
                                  VerticalOptions="Start"
                                  HorizontalOptions="FillAndExpand"
                                  FontFamily="SmoochRegular"
@@ -205,7 +226,7 @@
                                 Margin="0,0,10,0"
                                 CornerRadius="30"
                                 Text="&#9998; edit..."
-                                FontSize="16"
+                                FontSize="12"
                                 FontFamily="RobotoRegular"
                                 VerticalOptions="End"
                                 BackgroundColor="Transparent"
@@ -215,7 +236,7 @@
                                 <Label
                                      Grid.Row="1"
                                      Margin="0"
-                                     Text="22.12.2023r."
+                                     Text="{Binding Date}"
                                      FontSize="20"
                                      HorizontalOptions="Center"
                                      VerticalTextAlignment="Start"
