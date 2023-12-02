@@ -21,7 +21,7 @@
                 BackgroundColor="Transparent"
                 HorizontalOptions="Start"
                 />
-            
+
             <Label Grid.Column="1"
                    FontFamily="RobotoRegular"
                    FontSize="18"
@@ -148,101 +148,122 @@
         <!-- Linia oddzielajaca wydarzenia -->
         <BoxView
             Grid.Row="2"
+            Grid.ColumnSpan="2"
             Color="{StaticResource Gray500}" 
             HeightRequest="5"
             CornerRadius="30"
             VerticalOptions="Start"
             HorizontalOptions="FillAndExpand"
-            Margin="20,10,20,0"
-            Grid.ColumnSpan="2"/>
+            Margin="20,20,20,0"/>
 
         <!-- Lista pozostałych wydarzeń -->
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding EventItemList}"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <!-- Szczegóły kafelka -->
                     <Grid>
-                        <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
-                            <RoundRectangle Grid.RowSpan="4"
+                        <Grid x:Name="EventGrid" MinimumHeightRequest="100" RowDefinitions=".2*,.05*,Auto,.2*,.1*" ColumnDefinitions=".6*,.4*" >
+
+                            <!-- Tło -->
+                            <RoundRectangle
+                                Grid.RowSpan="4"  
                                 Grid.ColumnSpan="2"
-                                VerticalOptions="Start"
+                                VerticalOptions="Fill"
                                 CornerRadius="20"
-                                Margin="10,0"
-                                Fill="{StaticResource Gray600}"
-                                />
+                                Margin="15,0"
+                                Fill="{StaticResource Gray700}"/>
+
+                            <!-- Tytuł wydarzenia -->
                             <Label
                                 Grid.Row="0"
-                                Margin="30,15,0,0"
+                                Grid.Column="0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                Margin="30,0,15,0"
                                 Text="{Binding Title}"
-                                FontSize="10"
+                                FontSize="18"
                                 FontFamily="SmoochSemiBold"
                                 TextColor="{StaticResource Gray100}"/>
 
+                            <!-- Data wydarzenia -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding FormattedDate}"
+                                Margin="0,0,30,0"
+                                FontSize="16"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                FontFamily="SmoochRegular"
+                                TextColor="{StaticResource Yellow300Accent}"/>
+
+                            <!-- Kreska oddzielająca -->
                             <BoxView 
-                                Grid.Row="1"
-                                Color="{StaticResource Yellow200Accent}" 
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Margin="25,7,25,0"
                                 HeightRequest="1" 
+                                VerticalOptions="End"
+                                HorizontalOptions="FillAndExpand"
+                                Color="{StaticResource Yellow200Accent}" />
+
+                            <!-- Opis wydarzenia -->
+                            <Label
+                                x:Name="DescriptionLabel"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="2"
+                                Margin="30,0,30,5"
+                                Text="{Binding Description}"
+                                FontSize="14"
                                 VerticalOptions="Start"
                                 HorizontalOptions="FillAndExpand"
-                                Margin="20,8,20,0"
-                                Grid.ColumnSpan="2"/>
+                                FontFamily="SmoochRegular"
+                                TextColor="{StaticResource Gray200}"
+                                IsVisible="False"/>
 
-                            <Label
-                                 Grid.Row="2"
-                                 Margin="30,0,0,0"
-                                 Text="{Binding Description}"
-                                 FontSize="10"
-                                 VerticalOptions="Start"
-                                 HorizontalOptions="FillAndExpand"
-                                 FontFamily="SmoochRegular"
-                                 TextColor="{StaticResource Gray200}"/>
-
+                            <!-- Timer -->
                             <Grid Grid.Row="3">
                                 <BoxView 
-                                    Color="{StaticResource Yellow100Accent}"
+                                    Color="{StaticResource Yellow200Accent}"
                                     CornerRadius="0,20,20,0"
                                     HorizontalOptions="Fill"
                                     VerticalOptions="Fill"
-                                    Margin="11,1">
+                                    Margin="16,1">
                                 </BoxView>
                                 <Label
-                                    Grid.Row="0"
-                                    Margin="40,4,0,0"
                                     Text="1d 23h 39min 44sec"
-                                    FontSize="20"
+                                    FontSize="16"
                                     VerticalOptions="Center"
+                                    HorizontalOptions="Center"
                                     FontFamily="RowdiesRegular"
-                                    TextColor="{StaticResource Gray900}"/>
+                                    TextColor="{StaticResource Gray700}"/>
                             </Grid>
 
+                            <!-- Przycisk edycji -->
                             <Button
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Margin="0,0,10,0"
+                                Margin="0,0,15,-5"
                                 CornerRadius="30"
                                 Text="&#9998; edit..."
                                 FontSize="12"
                                 FontFamily="RobotoRegular"
                                 VerticalOptions="End"
+                                HorizontalOptions="End"
                                 BackgroundColor="Transparent"
                                 TextColor="{StaticResource Gray100}"/>
 
-                            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
-                                <Label
-                                     Grid.Row="1"
-                                     Margin="0"
-                                     Text="{Binding Date}"
-                                     FontSize="20"
-                                     HorizontalOptions="Center"
-                                     VerticalTextAlignment="Start"
-                                     FontFamily="SmoochRegular"
-                                     TextColor="{StaticResource Yellow300Accent}"/>
-                            </Grid>
+                            
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Grid.GestureRecognizers>
+
                         </Grid>
                     </Grid>
                 </DataTemplate>

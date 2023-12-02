@@ -12,9 +12,18 @@ public partial class AddNewItemPage : ContentPage
 
 	private void OnAddClicked(object sender, EventArgs e)
 	{
-		App.DataManager.EventItems.Add((EventItemModel)BindingContext);
+		var newEventItem = new EventItemModel
+		{
+			Title = ((EventItemModel)BindingContext).Title,
+			Description = ((EventItemModel)BindingContext).Description,
+			Date = ((EventItemModel)BindingContext).Date
+		};
+
+		App.DataManager.AddEventItem(newEventItem);
 
 		BindingContext = new EventItemModel();
+
+		App.DataManager.SaveEventItems(App.DataManager.EventItems);
 
 		Navigation.PushAsync(new HomePage());
 	}

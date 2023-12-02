@@ -13,12 +13,22 @@ public class EventItemModel
 	/// <summary>
 	/// Treść opisujaca wydarzenie.
 	/// </summary>
-	public string Content { get; set; }
+	public string Description { get; set; }
 
 	/// <summary>
-	/// Data wydarzenia.
+	/// Pełna data wydarzenia.
 	/// </summary>
-	public DateTime Data { get; set; }
+	public DateTime Date { get; set; }
+
+	/// <summary>
+	/// Tylko data wydarzenia.
+	/// </summary>
+	public DateOnly OnlyDate => new(Date.Year, Date.Month, Date.Day);
+
+	/// <summary>
+	/// Sformatowana data do wyświetlenia w postaci "1.1.1111".
+	/// </summary>
+	public string FormattedDate => OnlyDate.ToString("d.M.yyyy");
 
 	/// <summary>
 	/// Model dla listy wydarzeń.
