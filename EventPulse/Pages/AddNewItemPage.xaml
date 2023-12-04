@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:EventPulse"
              xmlns:lang="clr-namespace:EventPulse.Resources.Languages"
              xmlns:models="clr-namespace:EventPulse.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource Gray900}">
 
@@ -128,6 +129,7 @@
                     Margin="35,0,30,-4"
                     HorizontalOptions="Center"
                     Date="{Binding Date, Mode=TwoWay}"
+                    MinimumDate="{x:Static sys:DateTime.Now}"
                     TextColor="{StaticResource Gray100}"/>
 
             </Grid>

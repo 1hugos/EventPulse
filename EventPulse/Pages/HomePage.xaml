@@ -57,6 +57,7 @@
 
                 <!-- Tytuł wydarzenia -->
                 <Label
+                    x:Name="ClosestTitleLabel"
                     Grid.Row="0"
                     Margin="30,15,0,0"
                     Text="Title of event"
@@ -67,6 +68,7 @@
                 <!-- Data wydarzenia -->
                 <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,*" >
                     <Label
+                        x:Name="ClosestDateLabel"
                         Grid.Row="1"
                         Margin="0"
                         Text="22.12.2023r."
@@ -89,6 +91,8 @@
 
                 <!-- Opis wydarzenia -->
                 <Label
+                    x:Name="ClosestDescriptionLabel"
+                    Grid.ColumnSpan="2"
                     Grid.Row="2"
                     Margin="30,0,0,0"
                     Text="To jest długi tekst, który może mieć wiele linii. Przykładowy tekst, który może się rozciągać na kilka wierszy."
@@ -108,39 +112,29 @@
                         Margin="11,1">
                     </BoxView>
                     <Label
+                        x:Name="ClosestTimerLabel"
                         Grid.Row="0"
-                        Margin="40,4,0,0"
-                        Text="1d 23h 39min 44sec"
+                        Text=""
                         FontSize="20"
+                        HorizontalOptions="Center"
                         VerticalOptions="Center"
                         FontFamily="RowdiesRegular"
                         TextColor="{StaticResource Gray900}"/>
                 </Grid>
 
                 <!-- Edycja -->
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="23,2,0,0"
-                    FontFamily="FontAwesome"
-                    Text="{x:Static models:Icons.Edit}"
-                    TextColor="{StaticResource Gray200}"
-                    FontSize="12"
-                    BackgroundColor="Transparent"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Start"/>
-
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
                     Margin="10,0,10,0"
                     CornerRadius="30"
-                    Text="edit..."
-                    FontSize="16"
-                    FontFamily="RobotoRegular"
+                    FontFamily="FontAwesome"
+                    Text="{x:Static models:Icons.Edit}"
+                    FontSize="14"
                     VerticalOptions="End"
+                    HorizontalOptions="End"
                     BackgroundColor="Transparent"
-                    TextColor="{StaticResource Gray100}"
+                    TextColor="{StaticResource Gray200}"
                     />
             </Grid>
         </Grid>
@@ -157,7 +151,9 @@
             Margin="20,20,20,0"/>
 
         <!-- Lista pozostałych wydarzeń -->
-        <CollectionView Grid.Row="3"
+        <CollectionView 
+                        x:Name="GridCollectionView"
+                        Grid.Row="3"
                         ItemsSource="{Binding EventItemList}"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
@@ -236,7 +232,8 @@
                                     Margin="16,1">
                                 </BoxView>
                                 <Label
-                                    Text="1d 23h 39min 44sec"
+                                    x:Name="TimerLabel"
+                                    Text="{Binding TimeRemaining}"
                                     FontSize="16"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
@@ -250,15 +247,13 @@
                                 Grid.Column="1"
                                 Margin="0,0,15,-5"
                                 CornerRadius="30"
-                                Text="&#9998; edit..."
+                                FontFamily="FontAwesome"
+                                Text="{x:Static models:Icons.Edit}"
                                 FontSize="12"
-                                FontFamily="RobotoRegular"
                                 VerticalOptions="End"
                                 HorizontalOptions="End"
                                 BackgroundColor="Transparent"
-                                TextColor="{StaticResource Gray100}"/>
-
-                            
+                                TextColor="{StaticResource Gray200}"/>
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnCardTapped" />

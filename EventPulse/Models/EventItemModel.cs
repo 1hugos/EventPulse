@@ -1,9 +1,11 @@
-﻿namespace EventPulse.Models;
+﻿using System.ComponentModel;
+
+namespace EventPulse.Models;
 
 /// <summary>
 /// Model dla nowego wydarzenia.
 /// </summary>
-public class EventItemModel
+public class EventItemModel : INotifyPropertyChanged
 {
 	/// <summary>
 	/// Tytuł wydarzenia.
@@ -34,4 +36,39 @@ public class EventItemModel
 	/// Model dla listy wydarzeń.
 	/// </summary>
 	public List<EventItemModel> EventItemList { get; set; }
+
+	/// <summary>
+	/// Przechowuje sformatowany pozostały czas do wydarzenia.
+	/// </summary>
+	private string _timeRemaining;
+
+	/// <summary>
+	/// Pobiera lub ustawia pozostały czas do wydarzenia.
+	/// </summary>
+	public string TimeRemaining
+	{
+		get { return _timeRemaining; }
+		set
+		{
+			if (_timeRemaining != value)
+			{
+				_timeRemaining = value;
+				OnPropertyChanged(nameof(TimeRemaining));
+			}
+		}
+	}
+
+	/// <summary>
+	/// Zdarzenie wywoływane po zmianie wartości właściwości.
+	/// </summary>
+	public event PropertyChangedEventHandler PropertyChanged;
+
+	/// <summary>
+	/// Wywoływane w celu powiadomienia o zmianie wartości właściwości.
+	/// </summary>
+	/// <param name="propertyName">Nazwa właściwości, która uległa zmianie.</param>
+	protected virtual void OnPropertyChanged(string propertyName)
+	{
+		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+	}
 }
