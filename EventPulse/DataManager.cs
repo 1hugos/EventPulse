@@ -1,23 +1,25 @@
 ﻿using EventPulse.Models;
 using System.Collections.ObjectModel;
 
-public class DataManager
-{
-	public ObservableCollection<EventItemModel> EventItems { get; set; }
+namespace EventPulse;
 
-	public DataManager()
+public static class DataManager
+{
+	public static ObservableCollection<EventItemModel> EventItems { get; set; }
+
+	static DataManager()
 	{
 		EventItems = LoadEventItems();
 	}
 
-	public void AddEventItem(EventItemModel eventItem)
+	public static void AddEventItem(EventItemModel eventItem)
 	{
 		EventItems.Add(eventItem);
 
 		SaveEventItems(EventItems);
 	}
 
-	public ObservableCollection<EventItemModel> LoadEventItems()
+	public static ObservableCollection<EventItemModel> LoadEventItems()
 	{
 		string serializedList = Preferences.Get("EventItemList", string.Empty);
 
@@ -29,10 +31,15 @@ public class DataManager
 		return new ObservableCollection<EventItemModel>();
 	}
 
-	public void SaveEventItems(ObservableCollection<EventItemModel> eventItems)
+	public static void SaveEventItems(ObservableCollection<EventItemModel> eventItems)
 	{
 		string serializedList = Newtonsoft.Json.JsonConvert.SerializeObject(eventItems);
 
 		Preferences.Set("EventItemList", serializedList);
+	}
+
+	public static ObservableCollection<EventItemModel> SortEventItemsByDate()
+	{
+		return new(EventItems.OrderBy(item => item.Date));
 	}
 }
