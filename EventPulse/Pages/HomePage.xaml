@@ -135,7 +135,7 @@
                     HorizontalOptions="End"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource Gray200}"
-                    />
+                    Clicked="OnEditClosestEventButtonClicked"/>
             </Grid>
         </Grid>
 
@@ -253,7 +253,8 @@
                                 VerticalOptions="End"
                                 HorizontalOptions="End"
                                 BackgroundColor="Transparent"
-                                TextColor="{StaticResource Gray200}"/>
+                                TextColor="{StaticResource Gray200}"
+                                Clicked="OnEditButtonClicked"/>
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnCardTapped" />
