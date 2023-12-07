@@ -117,23 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add_new_item" xml:space="preserve">
+  <data name="Add_new_event" xml:space="preserve">
     <value>Nowe wydarzenie</value>
   </data>
   <data name="App_name" xml:space="preserve">
     <value>EventPulse</value>
   </data>
-  <data name="Get_started" xml:space="preserve">
-    <value>Rozpocznij</value>
+  <data name="Edit_event" xml:space="preserve">
+    <value>Edytuj wydarzenie</value>
   </data>
-  <data name="New_item_date" xml:space="preserve">
+  <data name="Event_date" xml:space="preserve">
     <value>Data wydarzenia:</value>
   </data>
-  <data name="New_item_description" xml:space="preserve">
+  <data name="Event_description" xml:space="preserve">
     <value>Opis wydarzenia:</value>
   </data>
-  <data name="New_item_title" xml:space="preserve">
+  <data name="Event_title" xml:space="preserve">
     <value>Tytuł wydarzenia:</value>
+  </data>
+  <data name="Get_started" xml:space="preserve">
+    <value>Rozpocznij</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Witamy w EventPulse.</value>

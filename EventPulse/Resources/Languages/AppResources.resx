@@ -117,23 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add_new_item" xml:space="preserve">
-    <value>Add_new_item</value>
+  <data name="Add_new_event" xml:space="preserve">
+    <value>Add_new_event</value>
   </data>
   <data name="App_name" xml:space="preserve">
     <value>App_name</value>
   </data>
+  <data name="Edit_event" xml:space="preserve">
+    <value>Edit_event</value>
+  </data>
+  <data name="Event_date" xml:space="preserve">
+    <value>Event_date</value>
+  </data>
+  <data name="Event_description" xml:space="preserve">
+    <value>Event_description</value>
+  </data>
+  <data name="Event_title" xml:space="preserve">
+    <value>Event_title</value>
+  </data>
   <data name="Get_started" xml:space="preserve">
     <value>Get_started</value>
-  </data>
-  <data name="New_item_date" xml:space="preserve">
-    <value>New_item_date</value>
-  </data>
-  <data name="New_item_description" xml:space="preserve">
-    <value>New_item_description</value>
-  </data>
-  <data name="New_item_title" xml:space="preserve">
-    <value>New_item_title</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>

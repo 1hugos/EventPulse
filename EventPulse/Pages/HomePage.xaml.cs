@@ -5,6 +5,7 @@ namespace EventPulse.Pages
 	public partial class HomePage : ContentPage
 	{
 		private bool isTimerRunning;
+		private EventItemModel closestEvent;
 
 		public HomePage()
 		{
@@ -50,9 +51,25 @@ namespace EventPulse.Pages
 		{
 			foreach (var item in DataManager.EventItems)
 			{
-				TimeSpan timeRemaining = item.Date - DateTime.Now;
+				DateTime now = DateTime.Now;
 
-				item.TimeRemaining = FormatTimeRemaining(timeRemaining);
+				DateTime eventDateTime = item.FullDate;
+
+				if (now < eventDateTime)
+				{
+					TimeSpan timeRemaining = eventDateTime - now;
+
+					item.TimeRemaining = FormatTimeRemaining(timeRemaining);
+				}
+				else
+				{
+					item.TimeRemaining = "Wydarzenie ju¿ siê odby³o.";
+				}
+			}
+
+			if (closestEvent != null)
+			{
+				ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 			}
 		}
 
@@ -89,10 +106,31 @@ namespace EventPulse.Pages
 
 		private void UpdateClosestEventUI(EventItemModel closestEvent)
 		{
+			this.closestEvent = closestEvent;
 			ClosestTitleLabel.Text = closestEvent.Title;
 			ClosestDateLabel.Text = closestEvent.FormattedDate;
 			ClosestDescriptionLabel.Text = closestEvent.Description;
-			ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 		}
+
+		private void OnEditButtonClicked(object sender, EventArgs e)
+		{
+			if (sender is Button editButton)
+			{
+				if (editButton.BindingContext is EventItemModel selectedItem)
+				{
+					// selectedItem zawiera dane wybranego elementu listy
+					Navigation.PushAsync(new EditEventPage(selectedItem));
+				}
+			}
+		}
+
+		private void OnEditClosestEventButtonClicked(object sender, EventArgs e)
+		{
+			if (closestEvent != null)
+			{
+				Navigation.PushAsync(new EditEventPage(closestEvent));
+			}
+		}
+
 	}
 }

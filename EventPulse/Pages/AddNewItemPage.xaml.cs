@@ -16,7 +16,8 @@ public partial class AddNewItemPage : ContentPage
 		{
 			Title = ((EventItemModel)BindingContext).Title,
 			Description = ((EventItemModel)BindingContext).Description,
-			Date = ((EventItemModel)BindingContext).Date
+			Date = ((EventItemModel)BindingContext).Date,
+			Time = ((EventItemModel)BindingContext).Time
 		};
 
 		DataManager.AddEventItem(newEventItem);

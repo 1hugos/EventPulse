@@ -61,11 +61,11 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add_new_item.
+        ///   Looks up a localized string similar to Add_new_event.
         /// </summary>
-        internal static string Add_new_item {
+        internal static string Add_new_event {
             get {
-                return ResourceManager.GetString("Add_new_item", resourceCulture);
+                return ResourceManager.GetString("Add_new_event", resourceCulture);
             }
         }
         
@@ -79,38 +79,47 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit_event.
+        /// </summary>
+        internal static string Edit_event {
+            get {
+                return ResourceManager.GetString("Edit_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event_date.
+        /// </summary>
+        internal static string Event_date {
+            get {
+                return ResourceManager.GetString("Event_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event_description.
+        /// </summary>
+        internal static string Event_description {
+            get {
+                return ResourceManager.GetString("Event_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event_title.
+        /// </summary>
+        internal static string Event_title {
+            get {
+                return ResourceManager.GetString("Event_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get_started.
         /// </summary>
         internal static string Get_started {
             get {
                 return ResourceManager.GetString("Get_started", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New_item_date.
-        /// </summary>
-        internal static string New_item_date {
-            get {
-                return ResourceManager.GetString("New_item_date", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New_item_description.
-        /// </summary>
-        internal static string New_item_description {
-            get {
-                return ResourceManager.GetString("New_item_description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New_item_title.
-        /// </summary>
-        internal static string New_item_title {
-            get {
-                return ResourceManager.GetString("New_item_title", resourceCulture);
             }
         }
         

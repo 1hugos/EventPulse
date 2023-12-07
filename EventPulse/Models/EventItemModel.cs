@@ -18,12 +18,22 @@ public class EventItemModel : INotifyPropertyChanged
 	public string Description { get; set; }
 
 	/// <summary>
-	/// Pełna data wydarzenia.
+	/// Data wydarzenia.
 	/// </summary>
 	public DateTime Date { get; set; }
 
 	/// <summary>
-	/// Tylko data wydarzenia.
+	/// Godzina wydarzenia.
+	/// </summary>
+	public TimeSpan Time { get; set; }
+
+	/// <summary>
+	/// Pełna data z godziną wydarzenia.
+	/// </summary>
+	public DateTime FullDate => Date.Add(Time);
+
+	/// <summary>
+	/// Sama data wydarzenia.
 	/// </summary>
 	public DateOnly OnlyDate => new(Date.Year, Date.Month, Date.Day);
 
