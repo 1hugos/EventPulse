@@ -1,4 +1,3 @@
-using EventPulse.Data;
 using EventPulse.Models;
 using EventPulse.Services;
 
@@ -8,6 +7,7 @@ namespace EventPulse.Pages
 	{
 		private bool isTimerRunning;
 		private EventItemModel closestEvent;
+		private IEnumerable<EventItemModel> events;
 
 		public HomePage()
 		{
@@ -33,16 +33,16 @@ namespace EventPulse.Pages
 				return;
 			}
 
-			var eventItems = EventService.MapToEventItemModels(response);
+			events = EventService.MapToEventItemModels(response);
 
 			var closestEventItemModel = new EventItemModel
 			{
-				EventItemList = new List<EventItemModel> { eventItems.OrderBy(item => item.Date).FirstOrDefault() }
+				EventItemList = new List<EventItemModel> { events.OrderBy(item => item.Date).FirstOrDefault() }
 			};
 
 			var eventItemModel = new EventItemModel
 			{
-				EventItemList = eventItems.OrderBy(item => item.Date).Skip(1).ToList()
+				EventItemList = events.OrderBy(item => item.Date).Skip(1).ToList()
 			};
 
 			UpdateClosestEventUI(closestEventItemModel.EventItemList.FirstOrDefault());
@@ -64,11 +64,9 @@ namespace EventPulse.Pages
 			}
 		}
 
-		private async void UpdateCountdowns()
+		private void UpdateCountdowns()
 		{
-			var eventItems = EventService.MapToEventItemModels(await App.EventDb.GetEvents());
-
-			foreach (var item in eventItems)
+			foreach (var item in events)
 			{
 				DateTime now = DateTime.Now;
 
@@ -86,10 +84,7 @@ namespace EventPulse.Pages
 				}
 			}
 
-			if (closestEvent != null)
-			{
-				ClosestTimerLabel.Text = closestEvent.TimeRemaining;
-			}
+			ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 		}
 
 		private void OnCardTapped(object sender, EventArgs e)

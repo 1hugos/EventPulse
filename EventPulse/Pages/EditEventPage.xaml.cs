@@ -5,8 +5,8 @@ namespace EventPulse.Pages;
 
 public partial class EditEventPage : ContentPage
 {
-	private EventItemModel _selectedEvent;
-	private int? _selectedId;
+	private readonly EventItemModel _selectedEvent;
+	private readonly int? _selectedId;
 
 	public EditEventPage(EventItemModel selectedItem)
 	{
