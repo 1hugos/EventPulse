@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using EventPulse.Data;
+using EventPulse.Utils;
 
 namespace EventPulse;
 
@@ -25,9 +27,10 @@ public static class MauiProgram
 				fonts.AddFont("Brands_Regular.otf", "BrandsRegular");
 			});
 
-#if DEBUG
+		builder.Services.AddSingleton(s =>
+			ActivatorUtilities.CreateInstance<EventDb>(s, Consts.DbPath));
+
 		builder.Logging.AddDebug();
-#endif
 
 		return builder.Build();
 	}

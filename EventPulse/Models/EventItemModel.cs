@@ -8,6 +8,11 @@ namespace EventPulse.Models;
 public class EventItemModel : INotifyPropertyChanged
 {
 	/// <summary>
+	/// ID wydarzenia.
+	/// </summary>
+	public string Id { get; set; }
+
+	/// <summary>
 	/// Tytuł wydarzenia.
 	/// </summary>
 	public string Title { get; set; }

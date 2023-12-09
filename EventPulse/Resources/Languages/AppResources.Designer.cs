@@ -124,6 +124,15 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No_records.
+        /// </summary>
+        internal static string No_records {
+            get {
+                return ResourceManager.GetString("No_records", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string Welcome {
