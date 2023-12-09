@@ -1,4 +1,6 @@
+using EventPulse.Data;
 using EventPulse.Models;
+using EventPulse.Services;
 
 namespace EventPulse.Pages
 {
@@ -11,26 +13,41 @@ namespace EventPulse.Pages
 		{
 			InitializeComponent();
 
+			this.Appearing += OnPageAppearing;
+		}
+
+		private async void OnPageAppearing(object sender, EventArgs e)
+		{
+			await LoadEventDataAsync();
+			StartCountdownTimer();
+		}
+
+		private async Task LoadEventDataAsync()
+		{
+			var response = await App.EventDb.GetEvents();
+
+			if(!response.Any())
+			{
+				NoRecordsGrid.IsVisible = true;
+				ClosestEvenGrid.IsVisible = false;
+				return;
+			}
+
+			var eventItems = EventService.MapToEventItemModels(response);
+
 			var closestEventItemModel = new EventItemModel
 			{
-				EventItemList = new List<EventItemModel> { DataManager.EventItems.OrderBy(item => item.Date).FirstOrDefault() }
+				EventItemList = new List<EventItemModel> { eventItems.OrderBy(item => item.Date).FirstOrDefault() }
 			};
 
 			var eventItemModel = new EventItemModel
 			{
-				EventItemList = DataManager.EventItems.OrderBy(item => item.Date).Skip(1).ToList()
+				EventItemList = eventItems.OrderBy(item => item.Date).Skip(1).ToList()
 			};
 
 			UpdateClosestEventUI(closestEventItemModel.EventItemList.FirstOrDefault());
 
 			BindingContext = eventItemModel;
-
-			this.Appearing += OnPageAppearing;
-		}
-
-		private void OnPageAppearing(object sender, EventArgs e)
-		{
-			StartCountdownTimer();
 		}
 
 		private void StartCountdownTimer()
@@ -47,9 +64,11 @@ namespace EventPulse.Pages
 			}
 		}
 
-		private void UpdateCountdowns()
+		private async void UpdateCountdowns()
 		{
-			foreach (var item in DataManager.EventItems)
+			var eventItems = EventService.MapToEventItemModels(await App.EventDb.GetEvents());
+
+			foreach (var item in eventItems)
 			{
 				DateTime now = DateTime.Now;
 
@@ -72,7 +91,6 @@ namespace EventPulse.Pages
 				ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 			}
 		}
-
 
 		private void OnCardTapped(object sender, EventArgs e)
 		{
@@ -118,7 +136,6 @@ namespace EventPulse.Pages
 			{
 				if (editButton.BindingContext is EventItemModel selectedItem)
 				{
-					// selectedItem zawiera dane wybranego elementu listy
 					Navigation.PushAsync(new EditEventPage(selectedItem));
 				}
 			}
@@ -131,6 +148,5 @@ namespace EventPulse.Pages
 				Navigation.PushAsync(new EditEventPage(closestEvent));
 			}
 		}
-
 	}
 }

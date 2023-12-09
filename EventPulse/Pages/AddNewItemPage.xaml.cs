@@ -1,4 +1,6 @@
 using EventPulse.Models;
+using EventPulse.Services;
+using System.Collections.ObjectModel;
 
 namespace EventPulse.Pages;
 
@@ -7,26 +9,25 @@ public partial class AddNewItemPage : ContentPage
 	public AddNewItemPage()
 	{
 		InitializeComponent();
-		BindingContext = new EventItemModel();
+		BindingContext = new EventModel();
+		
 	}
 
-	private void OnAddClicked(object sender, EventArgs e)
+	private async void OnAddClicked(object sender, EventArgs e)
 	{
-		var newEventItem = new EventItemModel
+		var newEventItem = new EventModel
 		{
-			Title = ((EventItemModel)BindingContext).Title,
-			Description = ((EventItemModel)BindingContext).Description,
-			Date = ((EventItemModel)BindingContext).Date,
-			Time = ((EventItemModel)BindingContext).Time
+			Title = ((EventModel)BindingContext).Title,
+			Description = ((EventModel)BindingContext).Description,
+			Date = ((EventModel)BindingContext).Date,
+			Time = ((EventModel)BindingContext).Time
 		};
 
-		DataManager.AddEventItem(newEventItem);
+		await App.EventDb.AddEvent(newEventItem);
 
-		BindingContext = new EventItemModel();
+		BindingContext = new EventModel();
 
-		DataManager.SaveEventItems(DataManager.EventItems);
-
-		Navigation.PushAsync(new HomePage());
+		await Navigation.PushAsync(new HomePage());
 	}
 
 	private void OnGoBackClicked(object sender, EventArgs e)

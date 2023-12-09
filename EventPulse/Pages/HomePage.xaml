@@ -42,8 +42,38 @@
                 />
         </Grid>
 
+        <!-- Brak wydarzeń -->
+        <Grid Grid.Row="1" 
+              x:Name="NoRecordsGrid"
+              IsVisible="False">
+            <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
+
+                <!-- Tło -->
+                <RoundRectangle 
+                    Grid.RowSpan="4"       
+                    Grid.ColumnSpan="2"             
+                    VerticalOptions="Start"            
+                    CornerRadius="20"           
+                    Margin="50,35"             
+                    Fill="{StaticResource Gray700}"/>
+
+                <!-- No record -->
+                <Label
+                    x:Name="NoRecordLabel"
+                    Grid.RowSpan="4"
+                    Grid.ColumnSpan="2"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Text="{x:Static lang:AppResources.No_records}"
+                    FontSize="36"
+                    FontFamily="SmoochSemiBold"
+                    TextColor="{StaticResource Gray200}"/>
+            </Grid>
+        </Grid>
+
         <!-- Najbliższe wydarzenie -->
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1" 
+              x:Name="ClosestEvenGrid">
             <Grid RowDefinitions=".2*,.1*,.5*,.2*" ColumnDefinitions=".7*,.3*">
 
                 <!-- Tło -->
@@ -60,7 +90,7 @@
                     x:Name="ClosestTitleLabel"
                     Grid.Row="0"
                     Margin="30,15,0,0"
-                    Text="Title of event"
+                    Text=""
                     FontSize="22"
                     FontFamily="SmoochSemiBold"
                     TextColor="{StaticResource Gray100}"/>
@@ -94,8 +124,8 @@
                     x:Name="ClosestDescriptionLabel"
                     Grid.ColumnSpan="2"
                     Grid.Row="2"
-                    Margin="30,0,0,0"
-                    Text="To jest długi tekst, który może mieć wiele linii. Przykładowy tekst, który może się rozciągać na kilka wierszy."
+                    Margin="30,0,30,0"
+                    Text=""
                     FontSize="18"
                     VerticalOptions="Start"
                     HorizontalOptions="FillAndExpand"

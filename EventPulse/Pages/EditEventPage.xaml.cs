@@ -1,47 +1,47 @@
 using EventPulse.Models;
+using EventPulse.Services;
 
 namespace EventPulse.Pages;
 
 public partial class EditEventPage : ContentPage
 {
 	private EventItemModel _selectedEvent;
+	private int? _selectedId;
+
 	public EditEventPage(EventItemModel selectedItem)
 	{
 		InitializeComponent();
 
 		_selectedEvent = selectedItem;
+		_selectedId = Convert.ToInt32(selectedItem.Id);
 
 		BindingContext = _selectedEvent;
 	}
 
-	private void OnDeleteEventClicked(object sender, EventArgs e)
+	private async void OnDeleteEventClicked(object sender, EventArgs e)
 	{
-		int selectedIndex = DataManager.EventItems.IndexOf(_selectedEvent);
+		await App.EventDb.DeleteEvent(int.Parse(_selectedEvent.Id));
 
-		if (selectedIndex != -1)
-		{
-			DataManager.EventItems.RemoveAt(selectedIndex);
-
-			DataManager.SaveEventItems(DataManager.EventItems);
-		}
-
-		Navigation.PushAsync(new HomePage());
+		await Navigation.PushAsync(new HomePage());
 	}
 
-	private void OnSaveChangesClicked(object sender, EventArgs e)
+	private async void OnSaveChangesClicked(object sender, EventArgs e)
 	{
-		int selectedIndex = DataManager.EventItems.IndexOf(_selectedEvent);
+		var eventItems = await App.EventDb.GetEvents();
 
-		if (selectedIndex != -1)
+		var updatedEventItem = eventItems.FirstOrDefault(e => e.Id == _selectedId);
+
+		if (updatedEventItem != null)
 		{
-			DataManager.EventItems[selectedIndex].Title = _selectedEvent.Title;
-			DataManager.EventItems[selectedIndex].Description = _selectedEvent.Description;
-			DataManager.EventItems[selectedIndex].Date = _selectedEvent.Date;
-			DataManager.EventItems[selectedIndex].Time = _selectedEvent.Time;
-			
-			DataManager.SaveEventItems(DataManager.EventItems);
+			updatedEventItem.Title = _selectedEvent.Title;
+			updatedEventItem.Description = _selectedEvent.Description;
+			updatedEventItem.Date = _selectedEvent.Date;
+			updatedEventItem.Time = _selectedEvent.Time;
 		}
+		
+		await App.EventDb.UpdateEvent(updatedEventItem);
 
-		Navigation.PushAsync(new HomePage());
+		await Navigation.PushAsync(new HomePage());
 	}
+
 }

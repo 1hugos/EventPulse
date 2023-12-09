@@ -138,6 +138,9 @@
   <data name="Get_started" xml:space="preserve">
     <value>Get Started</value>
   </data>
+  <data name="No_records" xml:space="preserve">
+    <value>No events yet.</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome to the EventPulse.</value>
   </data>
