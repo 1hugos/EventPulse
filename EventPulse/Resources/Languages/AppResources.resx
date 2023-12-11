@@ -123,6 +123,12 @@
   <data name="App_name" xml:space="preserve">
     <value>App_name</value>
   </data>
+  <data name="Delete_confirmation" xml:space="preserve">
+    <value>Delete_confirmation</value>
+  </data>
+  <data name="Delete_confirmation_msg" xml:space="preserve">
+    <value>Delete_confirmation_msg</value>
+  </data>
   <data name="Edit_event" xml:space="preserve">
     <value>Edit_event</value>
   </data>
@@ -144,6 +150,9 @@
   <data name="Get_started" xml:space="preserve">
     <value>Get_started</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="No_records" xml:space="preserve">
     <value>No_records</value>
   </data>
@@ -155,5 +164,8 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>
