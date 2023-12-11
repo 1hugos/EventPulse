@@ -79,6 +79,24 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete_confirmation.
+        /// </summary>
+        internal static string Delete_confirmation {
+            get {
+                return ResourceManager.GetString("Delete_confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete_confirmation_msg.
+        /// </summary>
+        internal static string Delete_confirmation_msg {
+            get {
+                return ResourceManager.GetString("Delete_confirmation_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit_event.
         /// </summary>
         internal static string Edit_event {
@@ -142,6 +160,15 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No_records.
         /// </summary>
         internal static string No_records {
@@ -174,6 +201,15 @@ namespace EventPulse.Resources.Languages {
         internal static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

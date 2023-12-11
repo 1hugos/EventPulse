@@ -123,6 +123,12 @@
   <data name="App_name" xml:space="preserve">
     <value>EventPulse</value>
   </data>
+  <data name="Delete_confirmation" xml:space="preserve">
+    <value>Czy jesteś pewien?</value>
+  </data>
+  <data name="Delete_confirmation_msg" xml:space="preserve">
+    <value>Czy naprawdę chcesz usunąć to wydarzenie? Tego procesu nie można cofnąć.</value>
+  </data>
   <data name="Edit_event" xml:space="preserve">
     <value>Edytuj wydarzenie</value>
   </data>
@@ -144,6 +150,9 @@
   <data name="Get_started" xml:space="preserve">
     <value>Rozpocznij</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nie</value>
+  </data>
   <data name="No_records" xml:space="preserve">
     <value>Brak wydarzeń.</value>
   </data>
@@ -155,5 +164,8 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Witamy w EventPulse.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Tak</value>
   </data>
 </root>
