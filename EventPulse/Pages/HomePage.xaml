@@ -12,14 +12,16 @@
 
         <!-- Nav -->
         <Grid Margin="20" ColumnDefinitions="*,*,*">
+
             <Button
                 Grid.Column="0"
                 FontFamily="FontAwesome"
-                Text="{x:Static models:Icons.Bars}"
+                Text="{x:Static models:Icons.Globe}"
                 TextColor="{StaticResource Gray200}"
                 FontSize="20"
                 BackgroundColor="Transparent"
                 HorizontalOptions="Start"
+                Clicked="OnLanguageSelectedChanged"
                 />
 
             <Label Grid.Column="1"
