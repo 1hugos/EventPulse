@@ -88,6 +88,15 @@ namespace EventPulse.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event_date.
         /// </summary>
         internal static string Event_date {
@@ -102,6 +111,15 @@ namespace EventPulse.Resources.Languages {
         internal static string Event_description {
             get {
                 return ResourceManager.GetString("Event_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event_occurred.
+        /// </summary>
+        internal static string Event_occurred {
+            get {
+                return ResourceManager.GetString("Event_occurred", resourceCulture);
             }
         }
         
@@ -129,6 +147,24 @@ namespace EventPulse.Resources.Languages {
         internal static string No_records {
             get {
                 return ResourceManager.GetString("No_records", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polish.
+        /// </summary>
+        internal static string Polish {
+            get {
+                return ResourceManager.GetString("Polish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select_Language.
+        /// </summary>
+        internal static string Select_Language {
+            get {
+                return ResourceManager.GetString("Select_Language", resourceCulture);
             }
         }
         

@@ -126,11 +126,17 @@
   <data name="Edit_event" xml:space="preserve">
     <value>Edit event</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Event_date" xml:space="preserve">
     <value>Date of the event:</value>
   </data>
   <data name="Event_description" xml:space="preserve">
     <value>Description of the event:</value>
+  </data>
+  <data name="Event_occurred" xml:space="preserve">
+    <value>The event occurred.</value>
   </data>
   <data name="Event_title" xml:space="preserve">
     <value>Title of the event:</value>
@@ -140,6 +146,12 @@
   </data>
   <data name="No_records" xml:space="preserve">
     <value>No events yet.</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>Polish</value>
+  </data>
+  <data name="Select_Language" xml:space="preserve">
+    <value>Select language</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome to the EventPulse.</value>

@@ -14,7 +14,7 @@
     <Grid RowDefinitions=".1*,.30*,.6*">
 
         <!-- Nav -->
-        <Grid Grid.Row="0" Margin="20" ColumnDefinitions="*,*,*">
+        <Grid Grid.Row="0" Margin="20" ColumnDefinitions=".25*,*,.25*">
             <Button
                 Grid.Column="0"
                 FontFamily="FontAwesome"

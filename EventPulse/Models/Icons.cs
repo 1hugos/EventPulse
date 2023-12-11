@@ -6,6 +6,7 @@ public static class Icons
 	// If you change the class to 'public' in order to use it outside its assembly
 	//  you should also change the fields from 'const' to 'public static readonly'
 
+	public const string Globe = "\uf0ac";
 	public const string TimesCircle = "\uf057";
 	public const string CheckCircle = "\uf058";
 	public const string Heart = "\uf004";
