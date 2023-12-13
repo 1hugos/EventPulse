@@ -7,7 +7,7 @@ namespace EventPulse.Pages;
 public partial class EditEventPage : ContentPage
 {
 	private readonly EventItemModel _selectedEvent;
-	private readonly int? _selectedId;
+	private readonly int _selectedId;
 
 	public EditEventPage(EventItemModel selectedItem)
 	{
@@ -25,7 +25,7 @@ public partial class EditEventPage : ContentPage
 
 		if (answer)
 		{
-			await App.EventDb.DeleteEvent(int.Parse(_selectedEvent.Id));
+			await App.EventDb.DeleteEvent(_selectedId);
 			await Navigation.PushAsync(new HomePage());
 		}
 	}

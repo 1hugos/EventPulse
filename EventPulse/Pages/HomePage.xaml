@@ -209,10 +209,10 @@
                             <!-- Tytuł wydarzenia -->
                             <Label
                                 Grid.Row="0"
-                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
-                                Margin="30,0,15,0"
+                                Margin="30,0,90,0"
                                 Text="{Binding Title}"
                                 FontSize="18"
                                 FontFamily="SmoochSemiBold"
