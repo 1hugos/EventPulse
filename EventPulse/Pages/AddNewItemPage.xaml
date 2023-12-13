@@ -134,12 +134,12 @@
                     Fill="{StaticResource Gray600}"/>
 
                 <DatePicker
+                    x:Name="NewEventDatePicker"
                     Grid.Row="5"
                     Grid.Column="0"
                     Margin="35,0,30,-4"
                     HorizontalOptions="Center"
                     Date="{Binding Date, Mode=TwoWay}"
-                    MinimumDate="{x:Static sys:DateTime.Now}"
                     TextColor="{StaticResource Gray100}"/>
 
                 <TimePicker 
