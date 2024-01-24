@@ -4,6 +4,8 @@ namespace EventPulse.Pages;
 
 public partial class LandingPage : ContentPage
 {
+	public ObservableCollection<string> ImageUrls { get => imageUrls; set => imageUrls = value; }
+
 	private ObservableCollection<string> imageUrls = new()
 		{
 			"cowboy.jpg",
@@ -14,6 +16,7 @@ public partial class LandingPage : ContentPage
 
 	private int currentIndex = 0;
 
+	[Obsolete]
 	public LandingPage()
 	{
 		InitializeComponent();
@@ -28,8 +31,6 @@ public partial class LandingPage : ContentPage
 			return true;
 		});
 	}
-
-	public ObservableCollection<string> ImageUrls { get => imageUrls; set => imageUrls = value; }
 
 	private void CarouselView_PositionChanged(object sender, PositionChangedEventArgs e)
 	{

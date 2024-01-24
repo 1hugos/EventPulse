@@ -27,7 +27,7 @@ public partial class HomePage : ContentPage
 	{
 		var response = await App.EventDb.GetEvents();
 
-		if(!response.Any())
+		if (!response.Any())
 		{
 			NoRecordsGrid.IsVisible = true;
 			ClosestEvenGrid.IsVisible = false;
@@ -36,21 +36,25 @@ public partial class HomePage : ContentPage
 
 		events = EventService.MapToEventItemModels(response);
 
-		var closestEventItemModel = new EventItemModel
+		if (events != null)
 		{
-			EventItemList = new List<EventItemModel> { events.OrderBy(item => item.Date).FirstOrDefault() }
-		};
+			var closestEventItemModel = new EventItemModel
+			{
+				EventItemList = new List<EventItemModel> { events.OrderBy(item => item.Date).FirstOrDefault() }
+			};
 
-		var eventItemModel = new EventItemModel
-		{
-			EventItemList = events.OrderBy(item => item.Date).Skip(1).ToList()
-		};
+			var eventItemModel = new EventItemModel
+			{
+				EventItemList = events.OrderBy(item => item.Date).Skip(1).ToList()
+			};
 
-		UpdateClosestEventUI(closestEventItemModel.EventItemList.FirstOrDefault());
+			UpdateClosestEventUI(closestEventItemModel.EventItemList.FirstOrDefault());
 
-		BindingContext = eventItemModel;
+			BindingContext = eventItemModel;
+		}
 	}
 
+	[Obsolete]
 	private void StartCountdownTimer()
 	{
 		if (!isTimerRunning)
@@ -67,26 +71,29 @@ public partial class HomePage : ContentPage
 
 	private void UpdateCountdowns()
 	{
-		foreach (var item in events)
+		if (events != null)
 		{
-			DateTime now = DateTime.Now;
-
-			DateTime eventDateTime = item.FullDate;
-
-			if (now < eventDateTime)
+			foreach (var item in events)
 			{
-				TimeSpan timeRemaining = eventDateTime - now;
+				DateTime now = DateTime.Now;
 
-				item.TimeRemaining = FormatTimeRemaining(timeRemaining);
+				DateTime eventDateTime = item.FullDate;
+
+				if (now < eventDateTime)
+				{
+					TimeSpan timeRemaining = eventDateTime - now;
+
+					item.TimeRemaining = FormatTimeRemaining(timeRemaining);
+				}
+				else
+				{
+					item.TimeRemaining = AppResources.Event_occurred;
+					ClosestTimerLabel.FontSize = 16;
+				}
 			}
-			else
-			{
-				item.TimeRemaining = AppResources.Event_occurred;
-				ClosestTimerLabel.FontSize = 16;
-			}
+
+			ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 		}
-
-		ClosestTimerLabel.Text = closestEvent.TimeRemaining;
 	}
 
 	private void OnCardTapped(object sender, EventArgs e)
