@@ -59,7 +59,7 @@
                     Margin="50,35"             
                     Fill="{StaticResource Gray700}"/>
 
-                <!-- No record -->
+                <!-- Brak wydarzeń -->
                 <Label
                     x:Name="NoRecordLabel"
                     Grid.RowSpan="4"
